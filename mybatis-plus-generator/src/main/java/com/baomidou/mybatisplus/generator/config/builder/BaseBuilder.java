@@ -49,8 +49,8 @@ public class BaseBuilder implements IConfigBuilder<StrategyConfig> {
     }
 
     @NotNull
-    public Service.Builder serviceBuilder() {
-        return strategyConfig.serviceBuilder();
+    public Repository.Builder repositoryBuilder() {
+        return strategyConfig.repositoryBuilder();
     }
 
     @NotNull

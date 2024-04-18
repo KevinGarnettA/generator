@@ -126,31 +126,51 @@ public abstract class AbstractTemplateEngine {
     }
 
     /**
-     * 输出service文件
+     * 输出Repository文件
      *
      * @param tableInfo 表信息
      * @param objectMap 渲染数据
      * @since 3.5.0
      */
-    protected void outputService(@NotNull TableInfo tableInfo, @NotNull Map<String, Object> objectMap) {
-        // IMpService.java
+    protected void outputRepository(@NotNull TableInfo tableInfo, @NotNull Map<String, Object> objectMap) {
+        // IMpRepository.java
         String entityName = tableInfo.getEntityName();
-        String servicePath = getPathInfo(OutputFile.service);
-        if (StringUtils.isNotBlank(tableInfo.getServiceName()) && StringUtils.isNotBlank(servicePath)) {
-            getTemplateFilePath(TemplateConfig::getService).ifPresent(service -> {
-                String serviceFile = String.format((servicePath + File.separator + tableInfo.getServiceName() + suffixJavaOrKt()), entityName);
-                outputFile(new File(serviceFile), objectMap, service, getConfigBuilder().getStrategyConfig().service().isFileOverride());
+        String RepositoryPath = getPathInfo(OutputFile.repository);
+        if (StringUtils.isNotBlank(tableInfo.getRepositoryName()) && StringUtils.isNotBlank(RepositoryPath)) {
+            getTemplateFilePath(TemplateConfig::getRepository).ifPresent(repository -> {
+                String RepositoryFile = String.format((RepositoryPath + File.separator + tableInfo.getRepositoryName() + suffixJavaOrKt()), entityName);
+                outputFile(new File(RepositoryFile), objectMap, repository, getConfigBuilder().getStrategyConfig().repository().isFileOverride());
             });
         }
-        // MpServiceImpl.java
-        String serviceImplPath = getPathInfo(OutputFile.serviceImpl);
-        if (StringUtils.isNotBlank(tableInfo.getServiceImplName()) && StringUtils.isNotBlank(serviceImplPath)) {
-            getTemplateFilePath(TemplateConfig::getServiceImpl).ifPresent(serviceImpl -> {
-                String implFile = String.format((serviceImplPath + File.separator + tableInfo.getServiceImplName() + suffixJavaOrKt()), entityName);
-                outputFile(new File(implFile), objectMap, serviceImpl, getConfigBuilder().getStrategyConfig().service().isFileOverride());
+        // MpRepositoryImpl.java
+        String RepositoryImplPath = getPathInfo(OutputFile.repositoryImpl);
+        if (StringUtils.isNotBlank(tableInfo.getRepositoryImplName()) && StringUtils.isNotBlank(RepositoryImplPath)) {
+            getTemplateFilePath(TemplateConfig::getRepositoryImpl).ifPresent(repositoryImpl -> {
+                String implFile = String.format((RepositoryImplPath + File.separator + tableInfo.getRepositoryImplName() + suffixJavaOrKt()), entityName);
+                outputFile(new File(implFile), objectMap, repositoryImpl, getConfigBuilder().getStrategyConfig().repository().isFileOverride());
             });
         }
     }
+
+//    protected void outputRepository(@NotNull TableInfo tableInfo, @NotNull Map<String, Object> objectMap) {
+//        // IMpRepository.java
+//        String entityName = tableInfo.getEntityName();
+//        String repositoryPath = getPathInfo(OutputFile.repository);
+//        if (StringUtils.isNotBlank(tableInfo.getRepositoryName()) && StringUtils.isNotBlank(repositoryPath)) {
+//            getTemplateFilePath(TemplateConfig::getRepository).ifPresent(Repository -> {
+//                String RepositoryFile = String.format((repositoryPath + File.separator + tableInfo.getRepositoryName() + suffixJavaOrKt()), entityName);
+//                outputFile(new File(RepositoryFile), objectMap, Repository, getConfigBuilder().getStrategyConfig().Repository().isFileOverride());
+//            });
+//        }
+//        // MpRepositoryImpl.java
+//        String repositoryImplPath = getPathInfo(OutputFile.RepositoryImpl);
+//        if (StringUtils.isNotBlank(tableInfo.getRepositoryImplName()) && StringUtils.isNotBlank(repositoryImplPath)) {
+//            getTemplateFilePath(TemplateConfig::getRepositoryImpl).ifPresent(RepositoryImpl -> {
+//                String implFile = String.format((repositoryImplPath + File.separator + tableInfo.getRepositoryImplName() + suffixJavaOrKt()), entityName);
+//                outputFile(new File(implFile), objectMap, RepositoryImpl, getConfigBuilder().getStrategyConfig().Repository().isFileOverride());
+//            });
+//        }
+//    }
 
     /**
      * 输出controller文件
@@ -244,8 +264,11 @@ public abstract class AbstractTemplateEngine {
                 outputEntity(tableInfo, objectMap);
                 // mapper and xml
                 outputMapper(tableInfo, objectMap);
-                // service
-                outputService(tableInfo, objectMap);
+                // Repository
+                outputRepository(tableInfo, objectMap);
+                //repository
+                outputRepository(tableInfo,objectMap);
+
                 // controller
                 outputController(tableInfo, objectMap);
             });
@@ -301,8 +324,8 @@ public abstract class AbstractTemplateEngine {
         Map<String, Object> objectMap = new HashMap<>(controllerData);
         Map<String, Object> mapperData = strategyConfig.mapper().renderData(tableInfo);
         objectMap.putAll(mapperData);
-        Map<String, Object> serviceData = strategyConfig.service().renderData(tableInfo);
-        objectMap.putAll(serviceData);
+        Map<String, Object> RepositoryData = strategyConfig.repository().renderData(tableInfo);
+        objectMap.putAll(RepositoryData);
         Map<String, Object> entityData = strategyConfig.entity().renderData(tableInfo);
         objectMap.putAll(entityData);
         objectMap.put("config", config);

@@ -50,14 +50,14 @@ public class PackageConfig {
     private String entity = "entity";
 
     /**
-     * Service包名
+     * Repository包名
      */
-    private String service = "service";
+    private String Repository = "repository";
 
     /**
-     * Service Impl包名
+     * Repository Impl包名
      */
-    private String serviceImpl = "service.impl";
+    private String RepositoryImpl = "repository.impl";
 
     /**
      * Mapper包名
@@ -122,8 +122,8 @@ public class PackageConfig {
             packageInfo.put(ConstVal.ENTITY, this.joinPackage(this.getEntity()));
             packageInfo.put(ConstVal.MAPPER, this.joinPackage(this.getMapper()));
             packageInfo.put(ConstVal.XML, this.joinPackage(this.getXml()));
-            packageInfo.put(ConstVal.SERVICE, this.joinPackage(this.getService()));
-            packageInfo.put(ConstVal.SERVICE_IMPL, this.joinPackage(this.getServiceImpl()));
+            packageInfo.put(ConstVal.REPOSITORY, this.joinPackage(this.getRepository()));
+            packageInfo.put(ConstVal.REPOSITORY_IMPL, this.joinPackage(this.getRepositoryImpl()));
             packageInfo.put(ConstVal.CONTROLLER, this.joinPackage(this.getController()));
             packageInfo.put(ConstVal.PARENT, this.getParent());
         }
@@ -149,12 +149,12 @@ public class PackageConfig {
         return entity;
     }
 
-    public String getService() {
-        return service;
+    public String getRepository() {
+        return Repository;
     }
 
-    public String getServiceImpl() {
-        return serviceImpl;
+    public String getRepositoryImpl() {
+        return RepositoryImpl;
     }
 
     public String getMapper() {
@@ -227,24 +227,24 @@ public class PackageConfig {
         }
 
         /**
-         * 指定service接口包名
+         * 指定Repository接口包名
          *
-         * @param service service包名
+         * @param Repository Repository包名
          * @return this
          */
-        public Builder service(@NotNull String service) {
-            this.packageConfig.service = service;
+        public Builder Repository(@NotNull String Repository) {
+            this.packageConfig.Repository = Repository;
             return this;
         }
 
         /**
-         * service实现类包名
+         * Repository实现类包名
          *
-         * @param serviceImpl service实现类包名
+         * @param RepositoryImpl Repository实现类包名
          * @return this
          */
-        public Builder serviceImpl(@NotNull String serviceImpl) {
-            this.packageConfig.serviceImpl = serviceImpl;
+        public Builder RepositoryImpl(@NotNull String RepositoryImpl) {
+            this.packageConfig.RepositoryImpl = RepositoryImpl;
             return this;
         }
 

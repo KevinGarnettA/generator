@@ -132,7 +132,7 @@ public class H2CodeGeneratorTest extends BaseGeneratorTest {
             .entityBuilder().formatFileName("%sEntity")
             .mapperBuilder().formatMapperFileName("%sDao").formatXmlFileName("%sXml")
             .controllerBuilder().formatFileName("%sAction")
-            .serviceBuilder().formatServiceFileName("%sService").formatServiceImplFileName("%sServiceImp")
+            .repositoryBuilder().formatRepositoryFileName("%sRepository").formatRepositoryImplFileName("%sRepositoryImp")
             .build());
         generator.global(globalConfig().build());
         generator.execute();

@@ -1,10 +1,10 @@
-package ${package.ServiceImpl};
+package ${package.RepositoryImpl};
 
 import ${package.Entity}.${entity};
 import ${package.Mapper}.${table.mapperName};
-import ${package.Service}.${table.serviceName};
-import ${superServiceImplClassPackage};
-import org.springframework.stereotype.Service;
+import ${package.Repository}.${table.RepositoryName};
+import ${superRepositoryImplClassPackage};
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -14,13 +14,13 @@ import org.springframework.stereotype.Service;
  * @author ${author}
  * @since ${date}
  */
-@Service
+@Repository
 <% if(kotlin){ %>
-open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
+open class ${table.RepositoryImplName} : ${superRepositoryImplClass}<${table.mapperName}, ${entity}>(), ${table.RepositoryName} {
 
 }
 <% }else{ %>
-public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
+public class ${table.RepositoryImplName} extends ${superRepositoryImplClass}<${table.mapperName}, ${entity}> implements ${table.RepositoryName} {
 
 }
 <% } %>

@@ -70,8 +70,8 @@ class PathInfoHandler {
         putPathInfo(templateConfig.getEntity(globalConfig.isKotlin()), OutputFile.entity, ConstVal.ENTITY);
         putPathInfo(templateConfig.getMapper(), OutputFile.mapper, ConstVal.MAPPER);
         putPathInfo(templateConfig.getXml(), OutputFile.xml, ConstVal.XML);
-        putPathInfo(templateConfig.getService(), OutputFile.service, ConstVal.SERVICE);
-        putPathInfo(templateConfig.getServiceImpl(), OutputFile.serviceImpl, ConstVal.SERVICE_IMPL);
+        putPathInfo(templateConfig.getRepository(), OutputFile.repository, ConstVal.REPOSITORY);
+        putPathInfo(templateConfig.getRepositoryImpl(), OutputFile.repositoryImpl, ConstVal.REPOSITORY_IMPL);
         putPathInfo(templateConfig.getController(), OutputFile.controller, ConstVal.CONTROLLER);
         putPathInfo(OutputFile.parent, ConstVal.PARENT);
     }

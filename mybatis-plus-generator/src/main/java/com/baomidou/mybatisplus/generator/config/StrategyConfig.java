@@ -119,7 +119,7 @@ public class StrategyConfig {
 
     private final Mapper.Builder mapperBuilder = new Mapper.Builder(this);
 
-    private final Service.Builder serviceBuilder = new Service.Builder(this);
+    private final Repository.Builder repositoryBuilder = new Repository.Builder(this);
 
     private Entity entity;
 
@@ -127,7 +127,7 @@ public class StrategyConfig {
 
     private Mapper mapper;
 
-    private Service service;
+    private Repository repository;
 
     /**
      * 实体配置构建者
@@ -205,29 +205,30 @@ public class StrategyConfig {
     }
 
     /**
-     * Service配置构建者
+     * Repository配置构建者
      *
-     * @return Service配置构建者
+     * @return Repository配置构建者
      * @since 3.5.0
      */
     @NotNull
-    public Service.Builder serviceBuilder() {
-        return serviceBuilder;
+    public Repository.Builder repositoryBuilder() {
+        return repositoryBuilder;
     }
 
     /**
-     * Service配置
+     * Repository配置
      *
-     * @return Service配置
+     * @return Repository配置
      * @since 3.5.0
      */
     @NotNull
-    public Service service() {
-        if (service == null) {
-            this.service = serviceBuilder.get();
+    public Repository repository() {
+        if (repository == null) {
+            this.repository = repositoryBuilder.get();
         }
-        return service;
+        return repository;
     }
+
 
     /**
      * 大写命名、字段符合大写字母数字下划线命名

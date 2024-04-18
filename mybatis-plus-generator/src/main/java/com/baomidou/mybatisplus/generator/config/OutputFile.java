@@ -28,6 +28,9 @@ public enum OutputFile {
     mapper,
     xml,
     controller,
+    repository,
+
+    repositoryImpl,
     /**
      * 已弃用，已重构自定义文件生成，3.5.4版本会删除
      */

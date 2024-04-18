@@ -30,8 +30,8 @@ public interface ConstVal {
     String MODULE_NAME = "ModuleName";
 
     String ENTITY = "Entity";
-    String SERVICE = "Service";
-    String SERVICE_IMPL = "ServiceImpl";
+    String REPOSITORY = "Repository";
+    String REPOSITORY_IMPL = "RepositoryImpl";
     String MAPPER = "Mapper";
     String XML = "Xml";
     String CONTROLLER = "Controller";
@@ -71,20 +71,20 @@ public interface ConstVal {
     String TEMPLATE_XML = "/templates/mapper.xml";
 
     /**
-     * Service模板路径
+     * Repository模板路径
      */
-    String TEMPLATE_SERVICE = "/templates/service.java";
+    String TEMPLATE_REPOSITORY = "/templates/Repository.java";
 
     /**
-     * ServiceImpl模板路径
+     * RepositoryImpl模板路径
      */
-    String TEMPLATE_SERVICE_IMPL = "/templates/serviceImpl.java";
+    String TEMPLATE_REPOSITORY_IMPL = "/templates/RepositoryImpl.java";
 
     String VM_LOAD_PATH_KEY = "file.resource.loader.class";
     String VM_LOAD_PATH_VALUE = "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader";
 
     String SUPER_MAPPER_CLASS = "com.baomidou.mybatisplus.core.mapper.BaseMapper";
-    String SUPER_SERVICE_CLASS = "com.baomidou.mybatisplus.extension.service.IService";
-    String SUPER_SERVICE_IMPL_CLASS = "com.baomidou.mybatisplus.extension.service.impl.ServiceImpl";
+    String SUPER_REPOSITORY_CLASS = "com.baomidou.mybatisplus.extension.repository.IRepository";
+    String SUPER_REPOSITORY_IMPL_CLASS = "com.baomidou.mybatisplus.extension.repository.impl.RepositoryImpl";
 
 }

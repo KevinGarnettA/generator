@@ -64,7 +64,7 @@
 - 添加 FastAutoGenerator 快速生成
 - 优化策略配置的验证
 - 注入配置新增注入map，以便支持在模板渲染内容中使用自己的map
-- feat: service和serviceImpl的模板取消强关联绑定，支持只生成一个
+- feat: Repository和RepositoryImpl的模板取消强关联绑定，支持只生成一个
 - feat: 支持自定义模板
 - fix: 修复enableTableFieldAnnotation注解失效的BUG
 - 策略配置新增表名、字段名的后缀过滤功能

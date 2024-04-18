@@ -56,15 +56,15 @@ public class TableInfoTest {
         Assertions.assertFalse(tableInfo.isConvert());
         Assertions.assertEquals("UserMapper", tableInfo.getMapperName());
         Assertions.assertEquals("UserMapper", tableInfo.getXmlName());
-        Assertions.assertEquals("IUserService", tableInfo.getServiceName());
-        Assertions.assertEquals("UserServiceImpl", tableInfo.getServiceImplName());
+        Assertions.assertEquals("IUserRepository", tableInfo.getRepositoryName());
+        Assertions.assertEquals("UserRepositoryImpl", tableInfo.getRepositoryImplName());
         Assertions.assertEquals("UserController", tableInfo.getControllerName());
 
         strategyConfig = GeneratorBuilder.strategyConfig();
         strategyConfig.entityBuilder().formatFileName("%sEntity")
             .mapperBuilder().formatMapperFileName("%sDao").formatXmlFileName("%sXml")
             .controllerBuilder().formatFileName("%sAction")
-            .serviceBuilder().formatServiceFileName("%sService").formatServiceImplFileName("%sServiceImp");
+            .repositoryBuilder().formatRepositoryFileName("%sRepository").formatRepositoryImplFileName("%sRepositoryImp");
         tableInfo = new TableInfo(new ConfigBuilder(GeneratorBuilder.packageConfig(), dataSourceConfig, strategyConfig,
             null, null, null), "user");
         tableInfo.processTable();
@@ -72,8 +72,8 @@ public class TableInfoTest {
         Assertions.assertEquals("UserEntity", tableInfo.getEntityName());
         Assertions.assertEquals("UserDao", tableInfo.getMapperName());
         Assertions.assertEquals("UserXml", tableInfo.getXmlName());
-        Assertions.assertEquals("UserService", tableInfo.getServiceName());
-        Assertions.assertEquals("UserServiceImp", tableInfo.getServiceImplName());
+        Assertions.assertEquals("UserRepository", tableInfo.getRepositoryName());
+        Assertions.assertEquals("UserRepositoryImp", tableInfo.getRepositoryImplName());
         Assertions.assertEquals("UserAction", tableInfo.getControllerName());
         strategyConfig = GeneratorBuilder.strategyConfig();
         strategyConfig.entityBuilder().nameConvert(new INameConvert() {

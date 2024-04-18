@@ -56,14 +56,14 @@ public class TemplateConfig {
     private String xml;
 
     /**
-     * 设置Service模板路径
+     * 设置Repository模板路径
      */
-    private String service;
+    private String repository;
 
     /**
-     * 设置ServiceImpl模板路径
+     * 设置RepositoryImpl模板路径
      */
-    private String serviceImpl;
+    private String repositoryImpl;
 
     /**
      * 是否禁用实体模板（默认 false）
@@ -79,8 +79,8 @@ public class TemplateConfig {
         this.controller = ConstVal.TEMPLATE_CONTROLLER;
         this.mapper = ConstVal.TEMPLATE_MAPPER;
         this.xml = ConstVal.TEMPLATE_XML;
-        this.service = ConstVal.TEMPLATE_SERVICE;
-        this.serviceImpl = ConstVal.TEMPLATE_SERVICE_IMPL;
+        this.repository = ConstVal.TEMPLATE_REPOSITORY;
+        this.repositoryImpl = ConstVal.TEMPLATE_REPOSITORY_IMPL;
     }
 
     /**
@@ -137,11 +137,11 @@ public class TemplateConfig {
                     case XML:
                         this.xml = null;
                         break;
-                    case SERVICE:
-                        this.service = null;
+                    case REPOSITORY:
+                        this.repository = null;
                         break;
-                    case SERVICE_IMPL:
-                        this.serviceImpl = null;
+                    case REPOSITORY_IMPL:
+                        this.repositoryImpl = null;
                         break;
                     default:
                 }
@@ -160,12 +160,12 @@ public class TemplateConfig {
         return disable(TemplateType.values());
     }
 
-    public String getService() {
-        return service;
+    public String getRepository() {
+        return repository;
     }
 
-    public String getServiceImpl() {
-        return serviceImpl;
+    public String getRepositoryImpl() {
+        return repositoryImpl;
     }
 
     public String getMapper() {
@@ -241,24 +241,24 @@ public class TemplateConfig {
         }
 
         /**
-         * 设置service模板路径
+         * 设置Repository模板路径
          *
-         * @param serviceTemplate     service接口模板路径
+         * @param RepositoryTemplate     Repository接口模板路径
          * @return this
          */
-        public Builder service(@NotNull String serviceTemplate) {
-            this.templateConfig.service = serviceTemplate;
+        public Builder Repository(@NotNull String RepositoryTemplate) {
+            this.templateConfig.repository = RepositoryTemplate;
             return this;
         }
 
         /**
-         * 设置serviceImpl模板路径
+         * 设置RepositoryImpl模板路径
          *
-         * @param serviceImplTemplate service实现类模板路径
+         * @param RepositoryImplTemplate Repository实现类模板路径
          * @return this
          */
-        public Builder serviceImpl(@NotNull String serviceImplTemplate) {
-            this.templateConfig.serviceImpl = serviceImplTemplate;
+        public Builder RepositoryImpl(@NotNull String RepositoryImplTemplate) {
+            this.templateConfig.repositoryImpl = RepositoryImplTemplate;
             return this;
         }
 

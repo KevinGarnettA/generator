@@ -14,33 +14,33 @@ public class TemplateConfigTest {
         TemplateConfig templateConfig;
         templateConfig = GeneratorBuilder.templateConfig().disable();
         Assertions.assertNull(templateConfig.getController());
-        Assertions.assertNull(templateConfig.getService());
-        Assertions.assertNull(templateConfig.getServiceImpl());
+        Assertions.assertNull(templateConfig.getRepository());
+        Assertions.assertNull(templateConfig.getRepositoryImpl());
         Assertions.assertNull(templateConfig.getMapper());
         Assertions.assertNull(templateConfig.getXml());
         Assertions.assertNull(templateConfig.getEntity(true));
         Assertions.assertNull(templateConfig.getEntity(false));
 
 
-        templateConfig = GeneratorBuilder.templateConfig().disable(TemplateType.SERVICE);
-        Assertions.assertNull(templateConfig.getService());
+        templateConfig = GeneratorBuilder.templateConfig().disable(TemplateType.REPOSITORY);
+        Assertions.assertNull(templateConfig.getRepository());
         Assertions.assertNotNull(templateConfig.getEntity(true));
         Assertions.assertNotNull(templateConfig.getEntity(false));
 
-        templateConfig = GeneratorBuilder.templateConfig().disable(TemplateType.SERVICE_IMPL);
-        Assertions.assertNull(templateConfig.getServiceImpl());
+        templateConfig = GeneratorBuilder.templateConfig().disable(TemplateType.REPOSITORY_IMPL);
+        Assertions.assertNull(templateConfig.getRepositoryImpl());
         Assertions.assertNotNull(templateConfig.getEntity(true));
         Assertions.assertNotNull(templateConfig.getEntity(false));
 
         templateConfig = GeneratorBuilder.templateConfig().disable(TemplateType.ENTITY);
-        Assertions.assertNotNull(templateConfig.getServiceImpl());
-        Assertions.assertNotNull(templateConfig.getService());
+        Assertions.assertNotNull(templateConfig.getRepositoryImpl());
+        Assertions.assertNotNull(templateConfig.getRepository());
         Assertions.assertNull(templateConfig.getEntity(true));
         Assertions.assertNull(templateConfig.getEntity(false));
 
         templateConfig = GeneratorBuilder.templateConfig().disable(TemplateType.ENTITY);
-        Assertions.assertNotNull(templateConfig.getServiceImpl());
-        Assertions.assertNotNull(templateConfig.getService());
+        Assertions.assertNotNull(templateConfig.getRepositoryImpl());
+        Assertions.assertNotNull(templateConfig.getRepository());
         Assertions.assertNull(templateConfig.getEntity(true));
         Assertions.assertNull(templateConfig.getEntity(false));
     }
@@ -63,17 +63,17 @@ public class TemplateConfigTest {
         templateConfig = GeneratorBuilder.templateConfig();
         Assertions.assertNotNull(templateConfig.getEntity(true));
         Assertions.assertNotNull(templateConfig.getEntity(false));
-        Assertions.assertNotNull(templateConfig.getService());
-        Assertions.assertNotNull(templateConfig.getServiceImpl());
+        Assertions.assertNotNull(templateConfig.getRepository());
+        Assertions.assertNotNull(templateConfig.getRepositoryImpl());
 
-        templateConfig = new TemplateConfig.Builder().entity("/tmp/entity.java").entityKt("/tmp/entity.kt").service("/tmp/service.java").serviceImpl("/tmp/serviceImpl.java").build();
+        templateConfig = new TemplateConfig.Builder().entity("/tmp/entity.java").entityKt("/tmp/entity.kt").Repository("/tmp/Repository.java").RepositoryImpl("/tmp/RepositoryImpl.java").build();
         Assertions.assertNotNull(templateConfig.getEntity(true));
         Assertions.assertNotNull(templateConfig.getEntity(false));
-        Assertions.assertNotNull(templateConfig.getService());
-        Assertions.assertNotNull(templateConfig.getServiceImpl());
+        Assertions.assertNotNull(templateConfig.getRepository());
+        Assertions.assertNotNull(templateConfig.getRepositoryImpl());
         Assertions.assertEquals("/tmp/entity.kt", templateConfig.getEntity(true));
         Assertions.assertEquals("/tmp/entity.java", templateConfig.getEntity(false));
-        Assertions.assertEquals("/tmp/service.java", templateConfig.getService());
-        Assertions.assertEquals("/tmp/serviceImpl.java", templateConfig.getServiceImpl());
+        Assertions.assertEquals("/tmp/Repository.java", templateConfig.getRepository());
+        Assertions.assertEquals("/tmp/RepositoryImpl.java", templateConfig.getRepositoryImpl());
     }
 }

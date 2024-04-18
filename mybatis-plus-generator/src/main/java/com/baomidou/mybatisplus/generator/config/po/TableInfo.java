@@ -84,14 +84,17 @@ public class TableInfo {
     private String xmlName;
 
     /**
-     * service名称
+     * repository名称
      */
-    private String serviceName;
+    private String repositoryName;
 
     /**
-     * serviceImpl名称
+     * repositoryImpl名称
      */
-    private String serviceImplName;
+    private String repositoryImplName;
+
+
+
 
     /**
      * controller名称
@@ -277,9 +280,10 @@ public class TableInfo {
         this.setEntityName(entity.getConverterFileName().convert(entityName));
         this.mapperName = strategyConfig.mapper().getConverterMapperFileName().convert(entityName);
         this.xmlName = strategyConfig.mapper().getConverterXmlFileName().convert(entityName);
-        this.serviceName = strategyConfig.service().getConverterServiceFileName().convert(entityName);
-        this.serviceImplName = strategyConfig.service().getConverterServiceImplFileName().convert(entityName);
+        this.repositoryName = strategyConfig.repository().getConverterRepositoryFileName().convert(entityName);
+        this.repositoryImplName = strategyConfig.repository().getConverterRepositoryImplFileName().convert(entityName);
         this.controllerName = strategyConfig.controller().getConverterFileName().convert(entityName);
+
         this.importPackage();
     }
 
@@ -329,14 +333,21 @@ public class TableInfo {
         return xmlName;
     }
 
-    public String getServiceName() {
-        return serviceName;
+    public String getrepositoryName() {
+        return repositoryName;
     }
 
-    public String getServiceImplName() {
-        return serviceImplName;
+    public String getrepositoryImplName() {
+        return repositoryImplName;
     }
 
+    public String getRepositoryImplName() {
+        return repositoryImplName;
+    }
+
+    public String getRepositoryName() {
+        return repositoryName;
+    }
     public String getControllerName() {
         return controllerName;
     }
@@ -354,4 +365,7 @@ public class TableInfo {
     public List<TableField> getCommonFields() {
         return commonFields;
     }
+
+
+
 }

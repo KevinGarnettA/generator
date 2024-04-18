@@ -138,8 +138,8 @@ new GlobalConfig.Builder()
 | parent(String)                    | 父包名            | 默认值:com.baomidou                                    |
 | moduleName(String)                | 父包模块名        | 默认值:无                                              |
 | entity(String)                    | Entity 包名       | 默认值:entity                                          |
-| service(String)                   | Service 包名      | 默认值:service                                         |
-| serviceImpl(String)               | Service Impl 包名 | 默认值:service.impl                                    |
+| Repository(String)                   | Repository 包名      | 默认值:Repository                                         |
+| RepositoryImpl(String)               | Repository Impl 包名 | 默认值:Repository.impl                                    |
 | mapper(String)                    | Mapper 包名       | 默认值:mapper                                          |
 | xml(String)                       | Mapper XML 包名   | 默认值:mapper.xml                                      |
 | controller(String)                | Controller 包名   | 默认值:controller                                      |
@@ -150,8 +150,8 @@ new PackageConfig.Builder()
     .parent("com.baomidou.mybatisplus.samples.generator")
     .moduleName("sys")
     .entity("po")
-    .service("service")
-    .serviceImpl("service.impl")
+    .Repository("Repository")
+    .RepositoryImpl("Repository.impl")
     .mapper("mapper")
     .xml("mapper.xml")
     .controller("controller")
@@ -167,8 +167,8 @@ new PackageConfig.Builder()
 | disable(TemplateType...) | 禁用模板                  | TemplateType.ENTITY         |
 | entity(String)           | 设置实体模板路径(JAVA)    | /templates/entity.java      |
 | entityKt(String)         | 设置实体模板路径(kotlin)  | /templates/entity.java      |
-| service(String)          | 设置 service 模板路径     | /templates/service.java     |
-| serviceImpl(String)      | 设置 serviceImpl 模板路径 | /templates/serviceImpl.java |
+| Repository(String)          | 设置 Repository 模板路径     | /templates/Repository.java     |
+| RepositoryImpl(String)      | 设置 RepositoryImpl 模板路径 | /templates/RepositoryImpl.java |
 | mapper(String)           | 设置 mapper 模板路径      | /templates/mapper.java      |
 | xml(String)              | 设置 mapperXml 模板路径   | /templates/mapper.xml       |
 | controller(String)       | 设置 controller 模板路径  | /templates/controller.java  |
@@ -177,8 +177,8 @@ new PackageConfig.Builder()
 new TemplateConfig.Builder()
     .disable(TemplateType.ENTITY)
     .entity("/templates/entity.java")
-    .service("/templates/service.java")
-    .serviceImpl("/templates/serviceImpl.java")
+    .Repository("/templates/Repository.java")
+    .RepositoryImpl("/templates/RepositoryImpl.java")
     .mapper("/templates/mapper.java")
     .xml("/templates/mapper.xml")
     .controller("/templates/controller.java")
@@ -226,7 +226,7 @@ new InjectionConfig.Builder()
 | entityBuilder             | 实体策略配置             |                                                                   |
 | controllerBuilder         | controller 策略配置      |                                                                   |
 | mapperBuilder             | mapper 策略配置          |                                                                   |
-| serviceBuilder            | service 策略配置         |                                                                   |
+| RepositoryBuilder            | Repository 策略配置         |                                                                   |
 
 ```java
 new StrategyConfig.Builder()
@@ -316,27 +316,27 @@ new StrategyConfig.Builder()
     .build();
 ```
 
-##### Service策略配置
+##### Repository策略配置
 
 | 方法                                          | 说明                          | 示例                                |
 | --------------------------------------------- | ----------------------------- | ----------------------------------- |
 | enableFileOverride                 | 覆盖已有文件            | 默认值:false                                           |
-| superServiceClass(Class<?>)                   | 设置 service 接口父类         | BaseService.class                   |
-| superServiceClass(String)                     | 设置 service 接口父类         | com.baomidou.global.BaseService     |
-| superServiceImplClass(Class<?>)               | 设置 service 实现类父类       | BaseServiceImpl.class               |
-| superServiceImplClass(String)                 | 设置 service 实现类父类       | com.baomidou.global.BaseServiceImpl |
-| convertServiceFileName(ConverterFileName)     | 转换 service 接口文件名称     |                                     |
-| convertServiceImplFileName(ConverterFileName) | 转换 service 实现类文件名称   |                                     |
-| formatServiceFileName(String)                 | 格式化 service 接口文件名称   |                                     |
-| formatServiceImplFileName(String)             | 格式化 service 实现类文件名称 |                                     |
+| superRepositoryClass(Class<?>)                   | 设置 Repository 接口父类         | BaseRepository.class                   |
+| superRepositoryClass(String)                     | 设置 Repository 接口父类         | com.baomidou.global.BaseRepository     |
+| superRepositoryImplClass(Class<?>)               | 设置 Repository 实现类父类       | BaseRepositoryImpl.class               |
+| superRepositoryImplClass(String)                 | 设置 Repository 实现类父类       | com.baomidou.global.BaseRepositoryImpl |
+| convertRepositoryFileName(ConverterFileName)     | 转换 Repository 接口文件名称     |                                     |
+| convertRepositoryImplFileName(ConverterFileName) | 转换 Repository 实现类文件名称   |                                     |
+| formatRepositoryFileName(String)                 | 格式化 Repository 接口文件名称   |                                     |
+| formatRepositoryImplFileName(String)             | 格式化 Repository 实现类文件名称 |                                     |
 
 ```java
 new StrategyConfig.Builder()
-    .serviceBuilder()
-    .superServiceClass(BaseService.class)
-    .superServiceImplClass(BaseServiceImpl.class)
-    .formatServiceFileName("%sService")
-    .formatServiceImplFileName("%sServiceImp")
+    .RepositoryBuilder()
+    .superRepositoryClass(BaseRepository.class)
+    .superRepositoryImplClass(BaseRepositoryImpl.class)
+    .formatRepositoryFileName("%sRepository")
+    .formatRepositoryImplFileName("%sRepositoryImp")
     .build();
 ```
 

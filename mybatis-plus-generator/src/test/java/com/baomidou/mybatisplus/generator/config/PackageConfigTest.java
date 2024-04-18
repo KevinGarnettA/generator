@@ -25,8 +25,8 @@ public class PackageConfigTest {
         Assertions.assertEquals(packageConfig.getController(),"action");
         Assertions.assertEquals(packageConfig.getEntity(),"entity");
         Assertions.assertEquals(packageConfig.getMapper(),"dao");
-        Assertions.assertEquals(packageConfig.getService(),"iservice");
-        Assertions.assertEquals(packageConfig.getServiceImpl(),"serviceIm");
+        Assertions.assertEquals(packageConfig.getRepository(),"iRepository");
+        Assertions.assertEquals(packageConfig.getRepositoryImpl(),"RepositoryIm");
         Assertions.assertEquals(1,packageConfig.getPathInfo().size());
         Assertions.assertTrue(packageConfig.getPathInfo().containsKey(OutputFile.controller));
     }
@@ -35,7 +35,7 @@ public class PackageConfigTest {
     void buildTest(){
         buildAssert(GeneratorBuilder.packageConfigBuilder().parent("com.baomihua")
             .moduleName("demo").controller("action").entity("entity")
-            .mapper("dao").service("iservice").serviceImpl("serviceIm")
+            .mapper("dao").Repository("iRepository").RepositoryImpl("RepositoryIm")
             .pathInfo(Collections.singletonMap(OutputFile.controller,"bbbb")).build());
     }
 }
