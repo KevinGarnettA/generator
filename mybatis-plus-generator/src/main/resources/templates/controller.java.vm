@@ -33,6 +33,36 @@ public class ${table.controllerName} extends ${superControllerClass} {
 #else
 public class ${table.controllerName} {
 #end
-    @RequestMapping()
+
+    @Autowire
+    private ${entity}Service ${entityLowerCase}Service;
+
+    @ApiOperation(value = "保存任务")
+    @RequestMapping("/Save${entity}")
+    public ApiResult save${entity}(@Validated @RequestBody ${entity}SaveReqDTO request) {
+            ${entityLowerCase}Service.save${entity}(request);
+        return ApiResult.success();
+    }
+
+
+    @ApiOperation(value = "删除")
+    @RequestMapping("/Delete${entity}")
+    public ApiResult delete${entity}(@Validated @RequestBody ${entity}DeleteReqDTO request) {
+        return ApiResult.success();
+    }
+
+
+    @ApiOperation(value = "列表查询")
+    @RequestMapping("/Describe${entity}List")
+    public ApiResult get${entity}List(@Validated @RequestBody Describe${entity}ListDTO request) {
+        return ApiResult.success();
+    }
+
+
+    @ApiOperation(value = "分页查询")
+    @RequestMapping("Describe${entity}List")
+    public ApiResult "get${entity}List"(@Validated @RequestBody Describe${entity}ListDTO request) {
+        return ApiResult.success();
+    }
 }
 #end

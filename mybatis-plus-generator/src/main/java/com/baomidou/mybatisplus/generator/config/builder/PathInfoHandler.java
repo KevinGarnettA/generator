@@ -75,6 +75,10 @@ class PathInfoHandler {
         putPathInfo(templateConfig.getController(), OutputFile.controller, ConstVal.CONTROLLER);
         putPathInfo(templateConfig.getController(), OutputFile.service, ConstVal.SERVICE);
         putPathInfo(templateConfig.getService(), OutputFile.serviceImpl, ConstVal.SERVICE_IMPL);
+        putPathInfo(templateConfig.getSaveReq(), OutputFile.saveReq, ConstVal.SAVE_REQ);
+        putPathInfo(templateConfig.getDeleteReq(), OutputFile.deleteReq, ConstVal.DELETE_REQ);
+        putPathInfo(templateConfig.getListReq(), OutputFile.listReq, ConstVal.LIST_REQ);
+        putPathInfo(templateConfig.getPageReq(), OutputFile.pageReq, ConstVal.PAGE_REQ);
         putPathInfo(OutputFile.parent, ConstVal.PARENT);
     }
 

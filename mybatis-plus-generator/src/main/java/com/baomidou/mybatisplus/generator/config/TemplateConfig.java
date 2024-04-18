@@ -62,6 +62,13 @@ public class TemplateConfig {
 
     private String service;
 
+    private String deleteReq;
+
+    private String listReq;
+
+    private String pageReq;
+
+    private String saveReq;
     private String serviceImpl;
 
     /**
@@ -87,6 +94,10 @@ public class TemplateConfig {
         this.repositoryImpl = ConstVal.TEMPLATE_REPOSITORY_IMPL;
         this.service = ConstVal.TEMPLATE_SERVICE;
         this.serviceImpl = ConstVal.TEMPLATE_SERVICE_IMPL;
+        this.deleteReq = ConstVal.TEMPLATE_DELETE_REQ;
+        this.listReq = ConstVal.TEMPLATE_LIST_REQ;
+        this.pageReq = ConstVal.TEMPLATE_PAGE_REQ;
+        this.saveReq = ConstVal.TEMPLATE_SAVE_REQ;
 
     }
 
@@ -155,6 +166,18 @@ public class TemplateConfig {
                         break;
                     case SERVICE_IMPL:
                         this.serviceImpl = null;
+                        break;
+                    case LIST_REQ:
+                        this.listReq = null;
+                        break;
+                    case PAGE_REQ:
+                        this.pageReq = null;
+                        break;
+                    case SAVE_REQ:
+                        this.saveReq = null;
+                        break;
+                    case DELETE_REQ:
+                        this.deleteReq = null;
                         break;
                     default:
                 }
@@ -333,6 +356,47 @@ public class TemplateConfig {
         }
 
         /**
+         * 设置控制器模板路径
+         *
+         * @param listReqTemplate 控制器模板路径
+         * @return this
+         */
+        public Builder listReq(@NotNull String listReqTemplate) {
+            this.templateConfig.controller = listReqTemplate;
+            return this;
+        }
+        /**
+         * 设置控制器模板路径
+         *
+         * @param deleteReqTemplate 控制器模板路径
+         * @return this
+         */
+        public Builder deleteReq(@NotNull String deleteReqTemplate) {
+            this.templateConfig.deleteReq = deleteReqTemplate;
+            return this;
+        }
+        /**
+         * 设置控制器模板路径
+         *
+         * @param saveReqTemplate 控制器模板路径
+         * @return this
+         */
+        public Builder saveReq(@NotNull String saveReqTemplate) {
+            this.templateConfig.saveReq = saveReqTemplate;
+            return this;
+        }
+        /**
+         * 设置控制器模板路径
+         *
+         * @param pageTemplate 控制器模板路径
+         * @return this
+         */
+        public Builder pageReq(@NotNull String pageTemplate) {
+            this.templateConfig.controller = pageTemplate;
+            return this;
+        }
+
+        /**
          * 构建模板配置对象
          *
          * @return 模板配置对象
@@ -349,5 +413,21 @@ public class TemplateConfig {
 
     public String getServiceImpl() {
         return serviceImpl;
+    }
+
+    public String getDeleteReq() {
+        return deleteReq;
+    }
+
+    public String getListReq() {
+        return listReq;
+    }
+
+    public String getPageReq() {
+        return pageReq;
+    }
+
+    public String getSaveReq() {
+        return saveReq;
     }
 }

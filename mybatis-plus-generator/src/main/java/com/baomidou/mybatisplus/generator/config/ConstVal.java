@@ -30,11 +30,21 @@ public interface ConstVal {
     String MODULE_NAME = "ModuleName";
 
     String ENTITY = "Entity";
+    String DTO = "Entity";
     String REPOSITORY = "Repository";
     String SERVICE = "Service";
     String REPOSITORY_IMPL = "RepositoryImpl";
     String SERVICE_IMPL = "ServiceImpl";
     String MAPPER = "Mapper";
+
+    String DELETE_REQ = "DeleteReq";
+
+    String LIST_REQ = "ListReq";
+
+    String PAGE_REQ = "PageReq";
+
+    String SAVE_REQ = "SaveReq";
+
     String XML = "Xml";
     String CONTROLLER = "Controller";
     String PARENT = "Parent";
@@ -75,10 +85,16 @@ public interface ConstVal {
     /**
      * Repository模板路径
      */
-    String TEMPLATE_REPOSITORY = "/templates/Repository.java";
-    String TEMPLATE_SERVICE = "/templates/Service.java";
+    String TEMPLATE_REPOSITORY = "/templates/repository.java";
+    String TEMPLATE_SERVICE = "/templates/service.java";
 
+    String TEMPLATE_DELETE_REQ = "/templates/deleteReq.java";
 
+    String TEMPLATE_LIST_REQ = "/templates/listReq.java";
+
+    String TEMPLATE_PAGE_REQ = "/templates/pageReq.java";
+
+    String TEMPLATE_SAVE_REQ = "/templates/saveReq.java";
     /**
      * RepositoryImpl模板路径
      */

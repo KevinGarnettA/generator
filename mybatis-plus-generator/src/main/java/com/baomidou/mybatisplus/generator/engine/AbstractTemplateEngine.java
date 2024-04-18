@@ -15,6 +15,7 @@
  */
 package com.baomidou.mybatisplus.generator.engine;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.config.*;
@@ -172,6 +173,42 @@ public abstract class AbstractTemplateEngine {
         }
     }
 
+    protected void outputDTO(@NotNull TableInfo tableInfo, @NotNull Map<String, Object> objectMap) {
+        String entityName = tableInfo.getEntityName();
+        String listReqPath = getPathInfo(OutputFile.listReq);
+        if (StringUtils.isNotBlank(listReqPath)) {
+            getTemplateFilePath(TemplateConfig::getListReq).ifPresent(listReq -> {
+                String listReqFile = String.format((listReqPath + File.separator + entityName+"ListReq.java"));
+                outputFile(new File(listReqFile), objectMap, listReq, true);
+            });
+        }
+
+        String saveReqPath = getPathInfo(OutputFile.saveReq);
+        if (StringUtils.isNotBlank(saveReqPath)) {
+            getTemplateFilePath(TemplateConfig::getSaveReq).ifPresent(savereq -> {
+                String saveReqFile = String.format((saveReqPath + File.separator + entityName+"SaveReq.java"));
+                outputFile(new File(saveReqFile), objectMap, savereq, true);
+            });
+        }
+
+        String pagePath = getPathInfo(OutputFile.pageReq);
+        if (StringUtils.isNotBlank(pagePath)) {
+            getTemplateFilePath(TemplateConfig::getPageReq).ifPresent(pageReq -> {
+                String listReqFile = String.format((pagePath + File.separator + entityName+"PageReq.java"));
+                outputFile(new File(listReqFile), objectMap, pageReq, true);
+            });
+        }
+
+        String deleteReqPath = getPathInfo(OutputFile.deleteReq);
+        if (StringUtils.isNotBlank(deleteReqPath)) {
+            getTemplateFilePath(TemplateConfig::getDeleteReq).ifPresent(deleteReq -> {
+                String deleteReqFile = String.format((deleteReqPath + File.separator + entityName+"DeleteReq.java"));
+                outputFile(new File(deleteReqFile), objectMap, deleteReq, true);
+            });
+        }
+
+    }
+
     /**
      * 输出controller文件
      *
@@ -254,6 +291,7 @@ public abstract class AbstractTemplateEngine {
             List<TableInfo> tableInfoList = config.getTableInfoList();
             tableInfoList.forEach(tableInfo -> {
                 Map<String, Object> objectMap = this.getObjectMap(config, tableInfo);
+
                 Optional.ofNullable(config.getInjectionConfig()).ifPresent(t -> {
                     // 添加自定义属性
                     t.beforeOutputFile(tableInfo, objectMap);
@@ -268,6 +306,8 @@ public abstract class AbstractTemplateEngine {
                 outputRepository(tableInfo, objectMap);
                 //service
                 outputService(tableInfo,objectMap);
+
+                outputDTO(tableInfo,objectMap);
 
                 // controller
                 outputController(tableInfo, objectMap);
@@ -349,6 +389,8 @@ public abstract class AbstractTemplateEngine {
         objectMap.put("schemaName", schemaName);
         objectMap.put("table", tableInfo);
         objectMap.put("entity", tableInfo.getEntityName());
+        objectMap.put("entityLowerCase", tableInfo.getEntityName().substring(0, 1).toLowerCase() + tableInfo.getEntityName().substring(1));
+        System.out.println();
         return objectMap;
     }
 

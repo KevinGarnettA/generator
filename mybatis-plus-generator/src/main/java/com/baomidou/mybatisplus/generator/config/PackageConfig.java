@@ -75,6 +75,10 @@ public class PackageConfig {
      * Controller包名
      */
     private String controller = "controller";
+    private String saveReq = "dto";
+    private String deleteReq = "dto";
+    private String pageReq = "dto";
+    private String listReq = "dto";
 
     /**
      * 路径配置信息
@@ -129,6 +133,10 @@ public class PackageConfig {
             packageInfo.put(ConstVal.SERVICE_IMPL, this.joinPackage(this.getServiceImpl()));
             packageInfo.put(ConstVal.REPOSITORY_IMPL, this.joinPackage(this.getRepositoryImpl()));
             packageInfo.put(ConstVal.CONTROLLER, this.joinPackage(this.getController()));
+            packageInfo.put(ConstVal.LIST_REQ, this.joinPackage(this.getListReq()));
+            packageInfo.put(ConstVal.SAVE_REQ, this.joinPackage(this.getSaveReq()));
+            packageInfo.put(ConstVal.PAGE_REQ, this.joinPackage(this.getPageReq()));
+            packageInfo.put(ConstVal.DELETE_REQ, this.joinPackage(this.getDeleteReq()));
             packageInfo.put(ConstVal.PARENT, this.getParent());
         }
         return Collections.unmodifiableMap(this.packageInfo);
@@ -179,6 +187,22 @@ public class PackageConfig {
 
     public String getController() {
         return controller;
+    }
+
+    public String getSaveReq() {
+        return saveReq;
+    }
+
+    public String getDeleteReq() {
+        return deleteReq;
+    }
+
+    public String getPageReq() {
+        return pageReq;
+    }
+
+    public String getListReq() {
+        return listReq;
     }
 
     public Map<OutputFile, String> getPathInfo() {
@@ -347,4 +371,6 @@ public class PackageConfig {
             return this.packageConfig;
         }
     }
+
+
 }
