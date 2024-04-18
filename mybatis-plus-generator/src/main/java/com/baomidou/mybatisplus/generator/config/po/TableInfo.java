@@ -93,7 +93,9 @@ public class TableInfo {
      */
     private String repositoryImplName;
 
+    private String serviceImplName;
 
+    private String  serviceName;
 
 
     /**
@@ -281,7 +283,9 @@ public class TableInfo {
         this.mapperName = strategyConfig.mapper().getConverterMapperFileName().convert(entityName);
         this.xmlName = strategyConfig.mapper().getConverterXmlFileName().convert(entityName);
         this.repositoryName = strategyConfig.repository().getConverterRepositoryFileName().convert(entityName);
+        this.serviceName = strategyConfig.service().getConverterServiceFileName().convert(entityName);
         this.repositoryImplName = strategyConfig.repository().getConverterRepositoryImplFileName().convert(entityName);
+        this.serviceImplName = strategyConfig.service().getConverterServiceImplFileName().convert(entityName);
         this.controllerName = strategyConfig.controller().getConverterFileName().convert(entityName);
 
         this.importPackage();
@@ -336,11 +340,6 @@ public class TableInfo {
     public String getrepositoryName() {
         return repositoryName;
     }
-
-    public String getrepositoryImplName() {
-        return repositoryImplName;
-    }
-
     public String getRepositoryImplName() {
         return repositoryImplName;
     }
@@ -367,5 +366,11 @@ public class TableInfo {
     }
 
 
+    public String getServiceImplName() {
+        return serviceImplName;
+    }
 
+    public String getServiceName() {
+        return serviceName;
+    }
 }

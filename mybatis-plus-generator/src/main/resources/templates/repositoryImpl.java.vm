@@ -20,7 +20,7 @@ open class ${table.RepositoryImplName} : ${superRepositoryImplClass}<${table.map
 
 }
 #else
-public class ${table.RepositoryImplName} extends ${superRepositoryImplClass}<${table.mapperName}, ${entity}> implements ${table.RepositoryName} {
+public class ${table.RepositoryImplName} extends ServiceImpl<${table.mapperName}, ${entity}> implements ${table.RepositoryName} {
 
 }
 #end

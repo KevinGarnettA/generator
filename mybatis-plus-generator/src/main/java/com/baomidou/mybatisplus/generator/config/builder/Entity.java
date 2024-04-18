@@ -177,7 +177,7 @@ public class Entity implements ITemplate {
      *
      * @since 3.5.2
      */
-    private boolean fileOverride;
+    private boolean fileOverride = true;
 
     /**
      * <p>

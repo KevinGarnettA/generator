@@ -99,7 +99,7 @@ public class Mapper implements ITemplate {
      *
      * @since 3.5.2
      */
-    private boolean fileOverride;
+    private boolean fileOverride = true;
 
     /**
      * 设置缓存实现类

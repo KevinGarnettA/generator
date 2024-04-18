@@ -26,6 +26,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static com.baomidou.mybatisplus.generator.config.OutputFile.service;
+
 /**
  * 策略配置项
  *
@@ -120,6 +122,7 @@ public class StrategyConfig {
     private final Mapper.Builder mapperBuilder = new Mapper.Builder(this);
 
     private final Repository.Builder repositoryBuilder = new Repository.Builder(this);
+    private final Service.Builder serviceBuilder = new Service.Builder(this);
 
     private Entity entity;
 
@@ -129,6 +132,8 @@ public class StrategyConfig {
 
     private Repository repository;
 
+
+    private Service service;
     /**
      * 实体配置构建者
      *
@@ -229,7 +234,13 @@ public class StrategyConfig {
         return repository;
     }
 
-
+    @NotNull
+    public Service service() {
+        if (service == null) {
+            this.service = serviceBuilder.get();
+        }
+        return service;
+    }
     /**
      * 大写命名、字段符合大写字母数字下划线命名
      *

@@ -35,7 +35,7 @@ public class PackageConfigTest {
     void buildTest(){
         buildAssert(GeneratorBuilder.packageConfigBuilder().parent("com.baomihua")
             .moduleName("demo").controller("action").entity("entity")
-            .mapper("dao").Repository("iRepository").RepositoryImpl("RepositoryIm")
+            .mapper("dao").repository("iRepository").repositoryImpl("RepositoryIm")
             .pathInfo(Collections.singletonMap(OutputFile.controller,"bbbb")).build());
     }
 }

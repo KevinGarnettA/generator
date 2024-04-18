@@ -14,7 +14,7 @@ import ${superRepositoryClassPackage};
 #if(${kotlin})
 interface ${table.RepositoryName} : ${superRepositoryClass}<${entity}>
 #else
-public interface ${table.RepositoryName} extends ${superRepositoryClass}<${entity}> {
+public interface ${entity}Service {
 
 }
 #end

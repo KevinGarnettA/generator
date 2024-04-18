@@ -31,7 +31,9 @@ public interface ConstVal {
 
     String ENTITY = "Entity";
     String REPOSITORY = "Repository";
+    String SERVICE = "Service";
     String REPOSITORY_IMPL = "RepositoryImpl";
+    String SERVICE_IMPL = "ServiceImpl";
     String MAPPER = "Mapper";
     String XML = "Xml";
     String CONTROLLER = "Controller";
@@ -74,11 +76,14 @@ public interface ConstVal {
      * Repository模板路径
      */
     String TEMPLATE_REPOSITORY = "/templates/Repository.java";
+    String TEMPLATE_SERVICE = "/templates/Service.java";
+
 
     /**
      * RepositoryImpl模板路径
      */
     String TEMPLATE_REPOSITORY_IMPL = "/templates/RepositoryImpl.java";
+    String TEMPLATE_SERVICE_IMPL = "/templates/ServiceImpl.java";
 
     String VM_LOAD_PATH_KEY = "file.resource.loader.class";
     String VM_LOAD_PATH_VALUE = "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader";
@@ -86,5 +91,6 @@ public interface ConstVal {
     String SUPER_MAPPER_CLASS = "com.baomidou.mybatisplus.core.mapper.BaseMapper";
     String SUPER_REPOSITORY_CLASS = "com.baomidou.mybatisplus.extension.repository.IRepository";
     String SUPER_REPOSITORY_IMPL_CLASS = "com.baomidou.mybatisplus.extension.repository.impl.RepositoryImpl";
+
 
 }

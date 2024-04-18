@@ -30,6 +30,7 @@ public class MySQLGeneratorTest extends BaseGeneratorTest {
         generator.global(globalConfig()
             .enableSwagger().author("wangys")
             .build());
+        generator.packageInfo(packageConfig().parent("com.sany.mos").build());
         generator.execute();
     }
 }
