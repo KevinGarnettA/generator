@@ -93,7 +93,7 @@ public class ${entity} extends ${superEntityClass}#if(${activeRecord})<${entity}
     #if(${field.logicDeleteField})
     @TableLogic
     #end
-    private ${field.propertyType} ${field.propertyName};
+private ${field.propertyType} ${field.propertyName};
 #end
 ## ----------  END 字段循环遍历  ----------
 #if(!${entityLombokModel})
