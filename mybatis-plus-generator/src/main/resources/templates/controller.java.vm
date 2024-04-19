@@ -6,9 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 #else
 import org.springframework.stereotype.Controller;
 #end
-#if(${superControllerClassPackage})
-import ${superControllerClassPackage};
-#end
 
 /**
  * <p>
@@ -21,8 +18,9 @@ import ${superControllerClassPackage};
 #if(${restControllerStyle})
 @RestController
 #else
-@Controller
+@RestController
 #end
+@Slf4j
 @RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
 #if(${kotlin})
 class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
@@ -34,35 +32,43 @@ public class ${table.controllerName} extends ${superControllerClass} {
 public class ${table.controllerName} {
 #end
 
-    @Autowire
-    private ${entity}Service ${entityLowerCase}Service;
+    @Autowired
+    private I${entity}Service ${entityLowerCase}Service;
 
-    @ApiOperation(value = "保存任务")
+    @ApiOperation(value = "记录查询")
+    @RequestMapping("/get${entity}")
+    public ApiResult<${entity}> get${entity}(@Validated @RequestBody ${entity}DeleteReq request) {
+        return ApiResult.success(${entityLowerCase}Service.get${entity}(request));
+    }
+
+    @ApiOperation(value = "保存")
     @RequestMapping("/Save${entity}")
-    public ApiResult save${entity}(@Validated @RequestBody ${entity}SaveReqDTO request) {
-            ${entityLowerCase}Service.save${entity}(request);
-        return ApiResult.success();
+    public ApiResult save${entity}(@Validated @RequestBody ${entity}SaveReq request) {
+        ${entityLowerCase}Service.save${entity}(request);
+        return ApiResult.success(true);
     }
 
 
     @ApiOperation(value = "删除")
     @RequestMapping("/Delete${entity}")
-    public ApiResult delete${entity}(@Validated @RequestBody ${entity}DeleteReqDTO request) {
-        return ApiResult.success();
+    public ApiResult delete${entity}(@Validated @RequestBody ${entity}DeleteReq request) {
+        ${entityLowerCase}Service.delete${entity}(request);
+        return ApiResult.success(true);
     }
 
 
     @ApiOperation(value = "列表查询")
     @RequestMapping("/Describe${entity}List")
-    public ApiResult get${entity}List(@Validated @RequestBody Describe${entity}ListDTO request) {
-        return ApiResult.success();
+    public ApiResult<List<${entity}>> get${entity}List(@Validated @RequestBody ${entity}ListReq request) {
+        return ApiResult.success(${entityLowerCase}Service.get${entity}List(request));
     }
 
 
     @ApiOperation(value = "分页查询")
-    @RequestMapping("Describe${entity}List")
-    public ApiResult "get${entity}List"(@Validated @RequestBody Describe${entity}ListDTO request) {
-        return ApiResult.success();
+    @RequestMapping("Describe${entity}Page")
+    public ApiResult<ApiPage<${entity}PageRes>> get${entity}PageList(@Validated @RequestBody ${entity}PageReq request) {
+        return ApiResult.success(${entityLowerCase}Service.get${entity}PageList(request));
     }
+
 }
 #end

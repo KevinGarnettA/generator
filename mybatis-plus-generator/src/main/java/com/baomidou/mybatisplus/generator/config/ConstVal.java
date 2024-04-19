@@ -43,6 +43,10 @@ public interface ConstVal {
 
     String PAGE_REQ = "PageReq";
 
+    String PAGE_RES = "PageRes";
+
+    String LIST_RES = "ListRes";
+
     String SAVE_REQ = "SaveReq";
 
     String XML = "Xml";
@@ -92,7 +96,12 @@ public interface ConstVal {
 
     String TEMPLATE_LIST_REQ = "/templates/listReq.java";
 
+    String TEMPLATE_LIST_RES = "/templates/listRes.java";
+
     String TEMPLATE_PAGE_REQ = "/templates/pageReq.java";
+
+    String TEMPLATE_PAGE_RES = "/templates/pageRes.java";
+
 
     String TEMPLATE_SAVE_REQ = "/templates/saveReq.java";
     /**

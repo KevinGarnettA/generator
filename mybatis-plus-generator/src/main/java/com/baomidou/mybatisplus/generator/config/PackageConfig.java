@@ -78,7 +78,9 @@ public class PackageConfig {
     private String saveReq = "dto";
     private String deleteReq = "dto";
     private String pageReq = "dto";
+    private String pageRes = "dto";
     private String listReq = "dto";
+    private String listRes = "dto";
 
     /**
      * 路径配置信息
@@ -134,8 +136,10 @@ public class PackageConfig {
             packageInfo.put(ConstVal.REPOSITORY_IMPL, this.joinPackage(this.getRepositoryImpl()));
             packageInfo.put(ConstVal.CONTROLLER, this.joinPackage(this.getController()));
             packageInfo.put(ConstVal.LIST_REQ, this.joinPackage(this.getListReq()));
+            packageInfo.put(ConstVal.LIST_RES, this.joinPackage(this.getListRes()));
             packageInfo.put(ConstVal.SAVE_REQ, this.joinPackage(this.getSaveReq()));
             packageInfo.put(ConstVal.PAGE_REQ, this.joinPackage(this.getPageReq()));
+            packageInfo.put(ConstVal.PAGE_RES, this.joinPackage(this.getPageRes()));
             packageInfo.put(ConstVal.DELETE_REQ, this.joinPackage(this.getDeleteReq()));
             packageInfo.put(ConstVal.PARENT, this.getParent());
         }
@@ -203,6 +207,15 @@ public class PackageConfig {
 
     public String getListReq() {
         return listReq;
+    }
+
+
+    public String getPageRes() {
+        return pageRes;
+    }
+
+    public String getListRes() {
+        return listRes;
     }
 
     public Map<OutputFile, String> getPathInfo() {

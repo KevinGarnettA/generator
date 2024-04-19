@@ -1,19 +1,15 @@
 package ${package.Entity};
 
-#foreach($pkg in ${table.importPackages})
-import ${pkg};
-#end
 #if(${springdoc})
 import io.swagger.v3.oas.annotations.media.Schema;
 #elseif(${swagger})
+import javax.validation.constraints.NotEmpty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 #end
 #if(${entityLombokModel})
-import lombok.Getter;
-import lombok.Setter;
     #if(${chainModel})
-    import lombok.experimental.Accessors;
+import lombok.experimental.Accessors;
     #end
 #end
 
@@ -33,8 +29,4 @@ public class ${entity}DeleteReq {
     @ApiModelProperty(value = "主键id")
     @NotEmpty(message="id不能为空")
     private List<Long> ids;
-}
-
-
-
 }

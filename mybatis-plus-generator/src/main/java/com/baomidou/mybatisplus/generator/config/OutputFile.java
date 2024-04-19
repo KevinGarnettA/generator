@@ -33,6 +33,8 @@ public enum OutputFile {
     saveReq,
     deleteReq,
     pageReq,
+    pageRes,
+    listRes,
     repositoryImpl,
 
     dto,

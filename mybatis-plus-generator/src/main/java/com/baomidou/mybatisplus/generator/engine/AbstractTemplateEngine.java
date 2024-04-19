@@ -207,6 +207,22 @@ public abstract class AbstractTemplateEngine {
             });
         }
 
+        String pageResPath = getPathInfo(OutputFile.pageRes);
+        if (StringUtils.isNotBlank(pageResPath)) {
+            getTemplateFilePath(TemplateConfig::getPageRes).ifPresent(pageRes -> {
+                String pageResFile = String.format((pageResPath + File.separator + entityName+"PageRes.java"));
+                outputFile(new File(pageResFile), objectMap, pageRes, true);
+            });
+        }
+
+        String listResPath = getPathInfo(OutputFile.listRes);
+        if (StringUtils.isNotBlank(listResPath)) {
+            getTemplateFilePath(TemplateConfig::getListRes).ifPresent(listRes -> {
+                String listResFile = String.format((listResPath + File.separator + entityName+"ListRes.java"));
+                outputFile(new File(listResFile), objectMap, listRes, true);
+            });
+        }
+
     }
 
     /**

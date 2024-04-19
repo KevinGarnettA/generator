@@ -1,10 +1,5 @@
 package ${package.RepositoryImpl};
-
-import ${package.Entity}.${entity};
-import ${package.Mapper}.${table.mapperName};
-import ${package.Repository}.${table.RepositoryName};
-import ${superRepositoryImplClassPackage};
-
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 /**
  * <p>
  * $!{table.comment} 服务实现类
@@ -15,11 +10,77 @@ import ${superRepositoryImplClassPackage};
  */
 @Service
 #if(${kotlin})
+@Slf4j
 open class ${table.RepositoryImplName} : ${superRepositoryImplClass}<${table.mapperName}, ${entity}>(), ${table.RepositoryName} {
 
 }
 #else
 public class ${table.serviceImplName} implements ${table.serviceName} {
 
+    @Autowired
+    private ${table.RepositoryName}  ${entityLowerCase}Repository;
+
+    @Autowired
+    private BaseService<DispatchDemo> baseService;
+
+    public  ${entity} get${entity}(${entity}DeleteReq request){
+        List<${entity}> list = ${entityLowerCase}Repository.listByIds(request.getIds());
+        return EmptyUtil.isNotEmpty(list)?list.get(0):null;
+    }
+
+    /**
+     * 保存
+     * @param request
+     */
+    public void save${entity}(${entity}SaveReq request){
+        ${entity} ${entityLowerCase} = new ${entity}();
+        BeanUtil.copyProperties(request, ${entityLowerCase});
+        if(EmptyUtil.isEmpty(${entityLowerCase}.getId())){
+            baseService.baseCreate(dispatchDemo);
+        }else{
+            baseService.baseUpdate(dispatchDemo);
+        }
+        ${entityLowerCase}Repository.saveOrUpdate(${entityLowerCase});
+    }
+
+    /**
+    *删除
+    * @param request
+    */
+    public void delete${entity}(${entity}DeleteReq request){
+        ${entityLowerCase}Repository.removeByIds(request.getIds());
+    }
+
+    /**
+    * 列表查询
+    * @param request
+    */
+    public List<${entity}> get${entity}List(${entity}ListReq request){
+        ${entity} ${entityLowerCase} = new ${entity}();
+        BeanUtil.copyProperties(request, ${entityLowerCase});
+        LambdaQueryWrapper<${entity}> cond = new LambdaQueryWrapper<>();
+        return ${entityLowerCase}Repository.list(cond);
+    }
+
+    /**
+    * 分页查询
+     * @param request
+    */
+    public ApiPage<${entity}PageRes> get${entity}PageList(${entity}PageReq request){
+
+        Page<${entity}> pageParam = new Page<>(request.getPageNumber(), request.getPageSize());
+        LambdaQueryWrapper<${entity}> cond = new LambdaQueryWrapper<>();
+        IPage<${entity}> pageResultList = ${entityLowerCase}Repository.page(pageParam,cond);
+        List<${entity}PageRes> list = new ArrayList<>();
+        pageResultList.getRecords().forEach(data->{
+            ${entity}PageRes dto = new ${entity}PageRes();
+            BeanUtil.copyProperties(data, dto);
+            list.add(dto);
+        });
+        ApiPage<${entity}PageRes> apiPage = new ApiPage<>(request.getPageNumber(), request.getPageSize());
+        apiPage.setRecords(list);
+        apiPage.setTotalCount(list.size());
+        return apiPage;
+    }
 }
 #end

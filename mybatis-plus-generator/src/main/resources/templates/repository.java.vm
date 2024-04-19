@@ -1,7 +1,5 @@
 package ${package.Repository};
 
-import ${package.Entity}.${entity};
-import ${superRepositoryClassPackage};
 
 /**
  * <p>

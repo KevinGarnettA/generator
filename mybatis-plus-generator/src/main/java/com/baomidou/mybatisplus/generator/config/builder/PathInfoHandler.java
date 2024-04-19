@@ -79,6 +79,8 @@ class PathInfoHandler {
         putPathInfo(templateConfig.getDeleteReq(), OutputFile.deleteReq, ConstVal.DELETE_REQ);
         putPathInfo(templateConfig.getListReq(), OutputFile.listReq, ConstVal.LIST_REQ);
         putPathInfo(templateConfig.getPageReq(), OutputFile.pageReq, ConstVal.PAGE_REQ);
+        putPathInfo(templateConfig.getListRes(), OutputFile.listRes, ConstVal.LIST_RES);
+        putPathInfo(templateConfig.getListRes(), OutputFile.pageRes, ConstVal.PAGE_RES);
         putPathInfo(OutputFile.parent, ConstVal.PARENT);
     }
 

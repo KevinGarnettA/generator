@@ -29,19 +29,18 @@ import lombok.Setter;
     #end
 #end
 #if(${table.convert})
-@TableName("${schemaName}${table.name}")
 #end
 #if(${springdoc})
 @Schema(name = "${entity}", description = "$!{table.comment}")
 #elseif(${swagger})
-@ApiModel(value = "${entity}对象", description = "$!{table.comment}")
+@ApiModel(value = "${entity}分页查询res对象", description = "$!{table.comment}")
 #end
 #if(${superEntityClass})
-public class ${entity} extends ${superEntityClass}#if(${activeRecord})<${entity}>#end {
+public class ${entity}PageRes extends ${superEntityClass}#if(${activeRecord})<${entity}>#end {
 #elseif(${activeRecord})
     public class ${entity} extends Model<${entity}> {
 #elseif(${entitySerialVersionUID})
-    public class ${entity} extends BaseEntity {
+    public class ${entity}PageRes extends BaseEntity {
 #else
     public class ${entity} {
 #end
@@ -55,10 +54,7 @@ public class ${entity} extends ${superEntityClass}#if(${activeRecord})<${entity}
         #if(${springdoc})
         @Schema(description = "${field.comment}")
         #elseif(${swagger})
-    @ApiModelProperty("${field.comment}")
-        #if("$!field.columnType" == "LOCAL_DATE_TIME")
-    @JsonFormat(pattern = DatePattern.NORM_DATETIME_MINUTE_PATTERN)
-        #end
+        @ApiModelProperty("${field.comment}")
         #else
         /**
          * ${field.comment}
@@ -93,7 +89,7 @@ public class ${entity} extends ${superEntityClass}#if(${activeRecord})<${entity}
     #if(${field.logicDeleteField})
     @TableLogic
     #end
-    private ${field.propertyType} ${field.propertyName};
+private ${field.propertyType} ${field.propertyName};
 #end
 ## ----------  END 字段循环遍历  ----------
 #if(!${entityLombokModel})

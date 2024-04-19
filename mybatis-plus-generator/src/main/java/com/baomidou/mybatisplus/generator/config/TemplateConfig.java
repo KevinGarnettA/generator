@@ -20,6 +20,9 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.baomidou.mybatisplus.generator.config.ConstVal.LIST_RES;
+import static com.baomidou.mybatisplus.generator.config.ConstVal.PAGE_RES;
+
 /**
  * 模板路径配置项
  *
@@ -65,8 +68,11 @@ public class TemplateConfig {
     private String deleteReq;
 
     private String listReq;
+    private String listRes;
 
     private String pageReq;
+
+    private String pageRes;
 
     private String saveReq;
     private String serviceImpl;
@@ -96,7 +102,9 @@ public class TemplateConfig {
         this.serviceImpl = ConstVal.TEMPLATE_SERVICE_IMPL;
         this.deleteReq = ConstVal.TEMPLATE_DELETE_REQ;
         this.listReq = ConstVal.TEMPLATE_LIST_REQ;
+        this.listRes = ConstVal.TEMPLATE_LIST_RES;
         this.pageReq = ConstVal.TEMPLATE_PAGE_REQ;
+        this.pageRes = ConstVal.TEMPLATE_PAGE_RES;
         this.saveReq = ConstVal.TEMPLATE_SAVE_REQ;
 
     }
@@ -173,6 +181,11 @@ public class TemplateConfig {
                     case PAGE_REQ:
                         this.pageReq = null;
                         break;
+                    case LIST_RES:
+                        this.listReq = null;
+                        break;
+                    case PAGE_RES:
+                        this.pageRes = null;
                     case SAVE_REQ:
                         this.saveReq = null;
                         break;
@@ -388,14 +401,24 @@ public class TemplateConfig {
         /**
          * 设置控制器模板路径
          *
-         * @param pageTemplate 控制器模板路径
+         * @param pageReqTemplate 控制器模板路径
          * @return this
          */
-        public Builder pageReq(@NotNull String pageTemplate) {
-            this.templateConfig.controller = pageTemplate;
+        public Builder pageReq(@NotNull String pageReqTemplate) {
+            this.templateConfig.pageReq = pageReqTemplate;
             return this;
         }
 
+        /**
+         * 设置控制器模板路径
+         *
+         * @param pageResTemplate 控制器模板路径
+         * @return this
+         */
+        public Builder pageRes(@NotNull String pageResTemplate) {
+            this.templateConfig.pageRes = pageResTemplate;
+            return this;
+        }
         /**
          * 构建模板配置对象
          *
@@ -430,4 +453,13 @@ public class TemplateConfig {
     public String getSaveReq() {
         return saveReq;
     }
+
+    public String getListRes() {
+        return listRes;
+    }
+
+    public String getPageRes() {
+        return pageRes;
+    }
+
 }

@@ -1,9 +1,5 @@
 package ${package.RepositoryImpl};
 
-import ${package.Entity}.${entity};
-import ${package.Mapper}.${table.mapperName};
-import ${package.Repository}.${table.RepositoryName};
-import ${superRepositoryImplClassPackage};
 import org.springframework.stereotype.Repository;
 
 /**

@@ -25,8 +25,9 @@ public class MySQLGeneratorTest extends BaseGeneratorTest {
     @Test
     public void testSimple() {
         AutoGenerator generator = new AutoGenerator(DATA_SOURCE_CONFIG);
-        generator.strategy(strategyConfig().addInclude("dispatch_task").
-            entityBuilder().enableLombok().addIgnoreColumns("id","create_user_id","create_user_name","update_user_name","update_user_id","create_time","update_time","delete_flag").enableChainModel().build());
+        generator.strategy(strategyConfig().addInclude("dispatch_demo").
+            entityBuilder().enableLombok().addIgnoreColumns("id","create_user_id","create_user_name","update_user_name","update_user_id","create_time","update_time","delete_flag").enableChainModel()
+            .mapperBuilder().enableBaseColumnList().enableBaseColumnList().build());
         generator.global(globalConfig()
             .enableSwagger().author("wangys")
             .build());
