@@ -359,6 +359,7 @@ public abstract class AbstractTemplateEngine {
             System.err.println("未找到输出目录：" + outDir);
         } else if (getConfigBuilder().getGlobalConfig().isOpen()) {
             try {
+                outDir = outDir + "com//sany//mos";
                 RuntimeUtils.openDir(outDir);
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);
