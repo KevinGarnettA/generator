@@ -36,13 +36,13 @@ public class ${table.controllerName} {
     private I${entity}Service ${entityLowerCase}Service;
 
     @ApiOperation(value = "记录查询")
-    @RequestMapping("/get${entity}")
+    @PostMapping("/get${entity}")
     public ApiResult<${entity}> get${entity}(@Validated @RequestBody ${entity}DeleteReq request) {
         return ApiResult.success(${entityLowerCase}Service.get${entity}(request));
     }
 
     @ApiOperation(value = "保存")
-    @RequestMapping("/Save${entity}")
+    @PostMapping("/Save${entity}")
     public ApiResult save${entity}(@Validated @RequestBody ${entity}SaveReq request) {
         ${entityLowerCase}Service.save${entity}(request);
         return ApiResult.success(true);
@@ -50,7 +50,7 @@ public class ${table.controllerName} {
 
 
     @ApiOperation(value = "删除")
-    @RequestMapping("/Delete${entity}")
+    @PostMapping("/Delete${entity}")
     public ApiResult delete${entity}(@Validated @RequestBody ${entity}DeleteReq request) {
         ${entityLowerCase}Service.delete${entity}(request);
         return ApiResult.success(true);
@@ -58,14 +58,14 @@ public class ${table.controllerName} {
 
 
     @ApiOperation(value = "列表查询")
-    @RequestMapping("/Describe${entity}List")
+    @PostMapping("/Describe${entity}List")
     public ApiResult<List<${entity}>> get${entity}List(@Validated @RequestBody ${entity}ListReq request) {
         return ApiResult.success(${entityLowerCase}Service.get${entity}List(request));
     }
 
 
     @ApiOperation(value = "分页查询")
-    @RequestMapping("Describe${entity}Page")
+    @PostMapping("Describe${entity}Page")
     public ApiResult<ApiPage<${entity}PageRes>> get${entity}PageList(@Validated @RequestBody ${entity}PageReq request) {
         return ApiResult.success(${entityLowerCase}Service.get${entity}PageList(request));
     }

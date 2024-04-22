@@ -55,6 +55,9 @@ public class ${entity}ListReq extends BaseEntity {
         @Schema(description = "${field.comment}")
         #elseif(${swagger})
         @ApiModelProperty("${field.comment}")
+        #if("$!field.columnType" == "LOCAL_DATE_TIME")
+        @JsonFormat(pattern = DatePattern.NORM_DATETIME_MINUTE_PATTERN)
+        #end
         #else
         /**
          * ${field.comment}
