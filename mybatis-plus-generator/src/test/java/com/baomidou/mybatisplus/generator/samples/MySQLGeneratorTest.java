@@ -17,21 +17,21 @@ public class MySQLGeneratorTest extends BaseGeneratorTest {
      * 数据源配置
      */
     private static final DataSourceConfig DATA_SOURCE_CONFIG = new DataSourceConfig
-        .Builder("jdbc:mysql://192.168.33.24:3307/mos_dispatch?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai", "root", "123456")
-//        .Builder("jdbc:mysql://192.168.33.116:3306/mos_dispatch?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai", "root", "123qwe")
+        .Builder("jdbc:mysql://mysql-57:3308/db_management?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai", "harris", "haiking")
+
         .schema("")
         .build();
 
     @Test
     public void testSimple() {
         AutoGenerator generator = new AutoGenerator(DATA_SOURCE_CONFIG);
-        generator.strategy(strategyConfig().addInclude("dispatch_demo").
-            entityBuilder().enableLombok().addIgnoreColumns("id","create_user_id","create_user_name","update_user_name","update_user_id","create_time","update_time","delete_flag").enableChainModel()
+        generator.strategy(strategyConfig().addInclude("test_task_xmind_copy1").
+            entityBuilder().enableLombok().addIgnoreColumns().enableChainModel()
             .mapperBuilder().enableBaseColumnList().enableBaseColumnList().build());
         generator.global(globalConfig()
-            .enableSwagger().author("wangys")
+            .enableSwagger().author("kevin")
             .build());
-        generator.packageInfo(packageConfig().parent("com.sany.mos").build());
+        generator.packageInfo(packageConfig().parent("cn.testin.tm").build());
         generator.execute();
     }
 }

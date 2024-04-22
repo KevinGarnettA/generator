@@ -5,10 +5,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 #elseif(${swagger})
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import javax.validation.constraints.*;
+import java.util.Date;
 #end
 #if(${entityLombokModel})
-import lombok.Getter;
-import lombok.Setter;
     #if(${chainModel})
 import lombok.experimental.Accessors;
     #end
@@ -40,10 +40,22 @@ public class ${entity}PageReq extends ${superEntityClass}#if(${activeRecord})<${
 #elseif(${activeRecord})
     public class ${entity} extends Model<${entity}> {
 #elseif(${entitySerialVersionUID})
-public class ${entity}PageReq extends PageBaseEntity {
+public class ${entity}PageReq  {
 #else
     public class ${entity} {
 #end
+
+
+    @NotNull(message = "页码不能为空")
+    @Min(message = "页码最小为1",value = 1)
+    @ApiModelProperty(value = "页码", dataType = "Integer", required = true)
+    private Integer page;
+
+    @NotNull(message = "页大小不能为空")
+    @Min(message = "页大小最小为1",value = 1)
+    @ApiModelProperty(value = "页大小", dataType = "Integer", required = true)
+    private Integer pageSize;
+
 ## ----------  BEGIN 字段循环遍历  ----------
 #foreach($field in ${table.fields})
 
@@ -55,6 +67,9 @@ public class ${entity}PageReq extends PageBaseEntity {
         @Schema(description = "${field.comment}")
         #elseif(${swagger})
         @ApiModelProperty("${field.comment}")
+        #if("$!field.columnType" == "LOCAL_DATE_TIME")
+        @JsonFormat(pattern = DatePattern.NORM_DATETIME_MINUTE_PATTERN)
+        #end
         #else
         /**
          * ${field.comment}
@@ -89,7 +104,8 @@ public class ${entity}PageReq extends PageBaseEntity {
     #if(${field.logicDeleteField})
     @TableLogic
     #end
-private ${field.propertyType} ${field.propertyName};
+    private ${field.propertyType} ${field.propertyName};
+
 #end
 ## ----------  END 字段循环遍历  ----------
 #if(!${entityLombokModel})

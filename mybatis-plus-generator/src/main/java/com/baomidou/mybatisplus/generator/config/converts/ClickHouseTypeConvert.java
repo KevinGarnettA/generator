@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.IColumnType;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Date;
+
 import static com.baomidou.mybatisplus.generator.config.converts.TypeConverts.contains;
 import static com.baomidou.mybatisplus.generator.config.converts.TypeConverts.containsAny;
 import static com.baomidou.mybatisplus.generator.config.rules.DbColumnType.*;
@@ -46,6 +48,7 @@ public class ClickHouseTypeConvert implements ITypeConvert {
 
     @Override
     public IColumnType processTypeConvert(@NotNull GlobalConfig globalConfig, @NotNull String fieldType) {
+        new Date();
         return TypeConverts.use(fieldType)
             .test(containsAny(INTEGER_TYPE).then(INTEGER))
             .test(containsAny(BIGINTEGER_TYPE).then(BIG_INTEGER))

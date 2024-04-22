@@ -22,6 +22,7 @@ package com.baomidou.mybatisplus.generator.config.rules;
  * @since 2017-01-11
  */
 public enum DbColumnType implements IColumnType {
+
     // 基本类型
     BASE_BYTE("byte", null),
     BASE_SHORT("short", null),
@@ -55,7 +56,7 @@ public enum DbColumnType implements IColumnType {
     LOCAL_TIME("LocalTime", "java.time.LocalTime"),
     YEAR("Year", "java.time.Year"),
     YEAR_MONTH("YearMonth", "java.time.YearMonth"),
-    LOCAL_DATE_TIME("LocalDateTime", "java.time.LocalDateTime"),
+    LOCAL_DATE_TIME("Date", "java.util.Date"),
     INSTANT("Instant", "java.time.Instant"),
 
     // 其他杂类

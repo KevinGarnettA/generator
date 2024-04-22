@@ -1,0 +1,54 @@
+package ${package.Entity};
+
+#if(${springdoc})
+import io.swagger.v3.oas.annotations.media.Schema;
+#elseif(${swagger})
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+#end
+#if(${entityLombokModel})
+import lombok.Getter;
+import lombok.Setter;
+    #if(${chainModel})
+    import lombok.experimental.Accessors;
+    #end
+#end
+
+/**
+ * <p>
+ * $!{table.comment}
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${entityLombokModel})
+@Data
+    #if(${chainModel})
+@Accessors(chain = true)
+    #end
+#end
+#if(${table.convert})
+#end
+#if(${springdoc})
+@Schema(name = "${entity}", description = "$!{table.comment}")
+#elseif(${swagger})
+@ApiModel(value = "${entity}列表返回对象", description = "$!{table.comment}")
+#end
+#if(${superEntityClass})
+public class ${entity}ListRes extends ${superEntityClass}#if(${activeRecord})<${entity}>#end {
+#elseif(${activeRecord})
+    public class ${entity} extends Model<${entity}> {
+#elseif(${entitySerialVersionUID})
+public class ${entity}Res  {
+#else
+    public class ${entity} {
+#end
+    @ApiModelProperty(value = "实体信息")
+    private ${entity} value;
+    /**
+     * 属性配置
+     */
+    private Object references;
+
+}

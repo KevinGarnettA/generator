@@ -96,7 +96,7 @@ public interface ConstVal {
 
     String TEMPLATE_LIST_REQ = "/templates/listReq.java";
 
-    String TEMPLATE_LIST_RES = "/templates/listRes.java";
+    String TEMPLATE_LIST_RES = "/templates/Res.java";
 
     String TEMPLATE_PAGE_REQ = "/templates/pageReq.java";
 

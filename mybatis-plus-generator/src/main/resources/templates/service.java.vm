@@ -11,10 +11,10 @@ package ${package.Repository};
 #if(${kotlin})
 interface ${table.RepositoryName} : ${superRepositoryClass}<${entity}>
 #else
-public interface I${entity}Service {
+public interface I${entity}Service extends IService<${entity}>{
 
 
-    ${entity} get${entity}(${entity}DeleteReq request);
+     ${entity}Res get${entity}(Long id);
 
     /**
     * 保存
@@ -38,7 +38,7 @@ public interface I${entity}Service {
     * 分页查询
      * @param request
     */
-    ApiPage<${entity}PageRes> get${entity}PageList(${entity}PageReq request);
+    PageUtils get${entity}PageList(${entity}PageReq request);
 
 
 }

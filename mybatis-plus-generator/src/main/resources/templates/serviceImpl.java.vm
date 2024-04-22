@@ -1,5 +1,7 @@
 package ${package.RepositoryImpl};
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import cn.hutool.json.JSONObject;
+import java.util.Objects;
 /**
  * <p>
  * $!{table.comment} 服务实现类
@@ -15,17 +17,21 @@ open class ${table.RepositoryImplName} : ${superRepositoryImplClass}<${table.map
 
 }
 #else
-public class ${table.serviceImplName} implements ${table.serviceName} {
+public class ${table.serviceImplName} extends ServiceImpl<${table.mapperName}, ${entity}> implements ${table.serviceName}  {
 
     @Autowired
-    private ${table.RepositoryName}  ${entityLowerCase}Repository;
+    private BaseService baseService;
 
-    @Autowired
-    private BaseService<DispatchDemo> baseService;
-
-    public  ${entity} get${entity}(${entity}DeleteReq request){
-        List<${entity}> list = ${entityLowerCase}Repository.listByIds(request.getIds());
-        return EmptyUtil.isNotEmpty(list)?list.get(0):null;
+    public  ${entity}Res get${entity}(Long id){
+        ${entity}Res ${entityLowerCase}Res = new ${entity}Res();
+        ${entity} ${entityLowerCase} = this.getById(id);
+        JSONObject references = new JSONObject();
+        if(EmptyUtil.isNotEmpty(${entityLowerCase})){
+            references.set("createUsers", baseService.getUserInfos(ListUtil.of(${entityLowerCase}.getCreatedBy(),${entityLowerCase}.getUpdatedBy()), ${entityLowerCase}.getEntId(), ${entityLowerCase}.getProjectId()));
+        }
+        ${entityLowerCase}Res.setValue(${entityLowerCase});
+        ${entityLowerCase}Res.setReferences(references);
+        return ${entityLowerCase}Res;
     }
 
     /**
@@ -35,12 +41,8 @@ public class ${table.serviceImplName} implements ${table.serviceName} {
     public void save${entity}(${entity}SaveReq request){
         ${entity} ${entityLowerCase} = new ${entity}();
         BeanUtil.copyProperties(request, ${entityLowerCase});
-        if(EmptyUtil.isEmpty(${entityLowerCase}.getId())){
-            baseService.baseCreate(dispatchDemo);
-        }else{
-            baseService.baseUpdate(dispatchDemo);
-        }
-        ${entityLowerCase}Repository.saveOrUpdate(${entityLowerCase});
+        ${entityLowerCase}.setDeleteStatus(0);
+        this.saveOrUpdate(${entityLowerCase});
     }
 
     /**
@@ -48,7 +50,10 @@ public class ${table.serviceImplName} implements ${table.serviceName} {
     * @param request
     */
     public void delete${entity}(${entity}DeleteReq request){
-        ${entityLowerCase}Repository.removeByIds(request.getIds());
+        LambdaUpdateWrapper<${entity}> wrapper = new LambdaUpdateWrapper<>();
+        wrapper.set(${entity}::getDeleteStatus, 1);
+        wrapper.in(${entity}::getXmindId,request.getIds());
+        this.update(wrapper);
     }
 
     /**
@@ -59,28 +64,40 @@ public class ${table.serviceImplName} implements ${table.serviceName} {
         ${entity} ${entityLowerCase} = new ${entity}();
         BeanUtil.copyProperties(request, ${entityLowerCase});
         LambdaQueryWrapper<${entity}> cond = new LambdaQueryWrapper<>();
-        return ${entityLowerCase}Repository.list(cond);
+        //TODO
+        return this.list(cond);
     }
 
     /**
     * 分页查询
      * @param request
     */
-    public ApiPage<${entity}PageRes> get${entity}PageList(${entity}PageReq request){
-
-        Page<${entity}> pageParam = new Page<>(request.getPageNumber(), request.getPageSize());
+    public PageUtils get${entity}PageList(${entity}PageReq request){
         LambdaQueryWrapper<${entity}> cond = new LambdaQueryWrapper<>();
-        IPage<${entity}> pageResultList = ${entityLowerCase}Repository.page(pageParam,cond);
-        List<${entity}PageRes> list = new ArrayList<>();
-        pageResultList.getRecords().forEach(data->{
-            ${entity}PageRes dto = new ${entity}PageRes();
-            BeanUtil.copyProperties(data, dto);
-            list.add(dto);
-        });
-        ApiPage<${entity}PageRes> apiPage = new ApiPage<>(request.getPageNumber(), request.getPageSize());
-        apiPage.setRecords(list);
-        apiPage.setTotalCount(list.size());
-        return apiPage;
+        //TODO
+##        cond.eq(${entity}::getTaskId,request.getTaskId());
+        Page<${entity}> ${entity}Page = baseMapper.selectPage(new Page<>(request.getPage(), request.getPageSize()), cond);
+        List<${entity}> records = ${entity}Page.getRecords();
+        if (CollectionUtil.isEmpty(records)) {
+            return new PageUtils();
+        }
+        // 设置任务的执行进度
+        Page<${entity}> result = new Page<>();
+        JSONObject references = new JSONObject();
+        result.setRecords(${entity}Page.getRecords());
+        // 如有其它属性填充 可以在这里添加。
+        result.setTotal(${entity}Page.getTotal());
+        result.setSize(${entity}Page.getSize());
+        result.setCurrent(${entity}Page.getCurrent());
+        result.setPages(${entity}Page.getPages());
+
+        List<Long> createUserIdList = ${entity}Page.getRecords().stream().map(${entity}::getCreatedBy).filter(Objects::nonNull).collect(Collectors.toList());
+        List<Long> updateUserIdList = ${entity}Page.getRecords().stream().map(${entity}::getUpdatedBy).filter(Objects::nonNull).collect(Collectors.toList());
+        List<Long> allUserIdList = new ArrayList<>();
+        allUserIdList.addAll(createUserIdList);
+        allUserIdList.addAll(updateUserIdList);
+        references.set("users", baseService.getUserInfos((allUserIdList), request.getEntId(), request.getProjectId()));
+        return new PageUtils(result, references);
     }
 }
 #end

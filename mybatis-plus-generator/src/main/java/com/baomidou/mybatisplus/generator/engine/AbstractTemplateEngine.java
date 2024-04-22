@@ -218,7 +218,7 @@ public abstract class AbstractTemplateEngine {
         String listResPath = getPathInfo(OutputFile.listRes);
         if (StringUtils.isNotBlank(listResPath)) {
             getTemplateFilePath(TemplateConfig::getListRes).ifPresent(listRes -> {
-                String listResFile = String.format((listResPath + File.separator + entityName+"ListRes.java"));
+                String listResFile = String.format((listResPath + File.separator + entityName+"Res.java"));
                 outputFile(new File(listResFile), objectMap, listRes, true);
             });
         }
@@ -319,7 +319,7 @@ public abstract class AbstractTemplateEngine {
                 // mapper and xml
                 outputMapper(tableInfo, objectMap);
                 // Repository
-                outputRepository(tableInfo, objectMap);
+//                outputRepository(tableInfo, objectMap);
                 //service
                 outputService(tableInfo,objectMap);
 

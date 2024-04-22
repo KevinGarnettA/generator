@@ -5,12 +5,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 #elseif(${swagger})
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Date;
 #end
 #if(${entityLombokModel})
-import lombok.Getter;
-import lombok.Setter;
     #if(${chainModel})
-    import lombok.experimental.Accessors;
+import lombok.experimental.Accessors;
     #end
 #end
 
@@ -41,7 +40,7 @@ public class ${entity} extends ${superEntityClass}#if(${activeRecord})<${entity}
 #elseif(${activeRecord})
     public class ${entity} extends Model<${entity}> {
 #elseif(${entitySerialVersionUID})
-    public class ${entity} extends BaseEntity {
+    public class ${entity} {
 #else
     public class ${entity} {
 #end
