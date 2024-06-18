@@ -79,7 +79,7 @@ public class ${table.serviceImplName} implements ${table.serviceName} {
         });
         ApiPage<${entity}PageRes> apiPage = new ApiPage<>(request.getPageNumber(), request.getPageSize());
         apiPage.setRecords(list);
-        apiPage.setTotalCount(list.size());
+        apiPage.setTotalCount(pageResultList.size());
         return apiPage;
     }
 }

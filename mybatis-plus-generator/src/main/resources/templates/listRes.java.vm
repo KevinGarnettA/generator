@@ -56,7 +56,7 @@ public class ${entity}ListRes extends BaseEntity {
         #elseif(${swagger})
         @ApiModelProperty("${field.comment}")
         #if("$!field.columnType" == "LOCAL_DATE_TIME")
-        @JsonFormat(pattern = DatePattern.NORM_DATETIME_MINUTE_PATTERN)
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
         #end
         #else
         /**
