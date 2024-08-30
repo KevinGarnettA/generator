@@ -21,7 +21,7 @@ public class ${table.serviceImplName} implements ${table.serviceName} {
     private ${table.RepositoryName}  ${entityLowerCase}Repository;
 
     @Autowired
-    private BaseService<DispatchDemo> baseService;
+    private BaseService<${entity}> baseService;
 
     public  ${entity} get${entity}(${entity}DeleteReq request){
         List<${entity}> list = ${entityLowerCase}Repository.listByIds(request.getIds());
@@ -36,9 +36,9 @@ public class ${table.serviceImplName} implements ${table.serviceName} {
         ${entity} ${entityLowerCase} = new ${entity}();
         BeanUtil.copyProperties(request, ${entityLowerCase});
         if(EmptyUtil.isEmpty(${entityLowerCase}.getId())){
-            baseService.baseCreate(dispatchDemo);
+            baseService.baseCreate(${entityLowerCase});
         }else{
-            baseService.baseUpdate(dispatchDemo);
+            baseService.baseUpdate(${entityLowerCase});
         }
         ${entityLowerCase}Repository.saveOrUpdate(${entityLowerCase});
     }
@@ -79,7 +79,7 @@ public class ${table.serviceImplName} implements ${table.serviceName} {
         });
         ApiPage<${entity}PageRes> apiPage = new ApiPage<>(request.getPageNumber(), request.getPageSize());
         apiPage.setRecords(list);
-        apiPage.setTotalCount(pageResultList.size());
+        apiPage.setTotalCount(list.size());
         return apiPage;
     }
 }
